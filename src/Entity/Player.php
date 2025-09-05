@@ -2,35 +2,32 @@
 
 namespace App\Entity;
 
+use App\Repository\PlayerRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: PlayerRepository::class)]
 #[ORM\Table(name: "tbl_players")]
 class Player
 {
-    #[ORM\Id, ORM\GeneratedValue, ORM\Column(type: "integer")]
-    private int $id;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private ?int $id = null;
 
-    #[ORM\Column(type: "string", length: 100)]
-    private string $name;
+    #[ORM\Column(length: 100)]
+    private ?string $name = null;
 
-    public function setId(int $id): self
-    {
-        $this->id = $id;
-        return $this;
-    }
-
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->name;
     }
 
-    public function setName(string $name): self
+    public function setName(string $name): static
     {
         $this->name = $name;
 
