@@ -17,6 +17,9 @@ class Player
     #[ORM\Column(length: 100)]
     private ?string $name = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $xp = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -37,6 +40,18 @@ class Player
     public function __toString()
     {
         return sprintf("Player ID: %d, Name: %s", $this->id, $this->name);
+    }
+
+    public function getXp(): ?int
+    {
+        return $this->xp;
+    }
+
+    public function setXp(?int $xp): static
+    {
+        $this->xp = $xp;
+
+        return $this;
     }
 
 }
