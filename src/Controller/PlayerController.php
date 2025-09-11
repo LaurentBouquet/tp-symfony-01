@@ -19,7 +19,10 @@ class PlayerController extends AbstractController
     private EntityManagerInterface $entityManager;
     private FormFactoryInterface $formFactory;
 
-    public function __construct(PlayerRepository $playerRepository, EntityManagerInterface $entityManager, FormFactoryInterface $formFactory)
+    public function __construct(
+        PlayerRepository $playerRepository,
+        EntityManagerInterface $entityManager,
+        FormFactoryInterface $formFactory)
     {
         $this->playerRepository = $playerRepository;
         $this->entityManager = $entityManager;
