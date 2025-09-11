@@ -17,6 +17,7 @@ class PlayerType extends AbstractType
         $builder->add('xp', IntegerType::class, ['label' => "Expérience (XP)"]);
         $builder->add('level');
         $builder->add('groups');
+        $builder->add('games');
     }
 
     public function configureOptions(OptionsResolver $resolver): void
