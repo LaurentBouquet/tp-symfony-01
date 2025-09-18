@@ -2,13 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\CategoryRepository;
+use App\Repository\CharacterRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: CategoryRepository::class)]
-class Category
+#[ORM\Entity(repositoryClass: CharacterRepository::class)]
+#[ORM\Table(name: '`character`')]
+class Character
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -21,7 +22,7 @@ class Category
     /**
      * @var Collection<int, Player>
      */
-    #[ORM\ManyToMany(targetEntity: Player::class, mappedBy: 'categories')]
+    #[ORM\ManyToMany(targetEntity: Player::class, mappedBy: 'characters')]
     private Collection $players;
 
     public function __construct()
@@ -58,7 +59,7 @@ class Category
     {
         if (!$this->players->contains($player)) {
             $this->players->add($player);
-            $player->addCategory($this);
+            $player->addCharacter($this);
         }
 
         return $this;
@@ -67,7 +68,7 @@ class Category
     public function removePlayer(Player $player): static
     {
         if ($this->players->removeElement($player)) {
-            $player->removeCategory($this);
+            $player->removeCharacter($this);
         }
 
         return $this;
